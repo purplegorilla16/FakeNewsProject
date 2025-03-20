@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>fake-news</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>fake-news_1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -9765,6 +9765,8 @@ Test set: 31 rows
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">categorize_type</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
@@ -9798,10 +9800,7 @@ Test set: 31 rows
 
 <span class="c1"># Train a simple logistic regression model</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span>
-    <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>  <span class="c1"># Øger max iterationer til 1000 for at sikre, at modellen konvergerer</span>
-    <span class="n">solver</span><span class="o">=</span><span class="s1">'lbfgs'</span><span class="p">,</span>  <span class="c1"># Bruger LBFGS solver, som er god til middelstore datasæt</span>
-    <span class="n">penalty</span><span class="o">=</span><span class="s1">'l2'</span><span class="p">,</span>  <span class="c1"># L2-regularisering hjælper med at undgå overfitting</span>
-    <span class="n">C</span><span class="o">=</span><span class="mf">1.0</span>  <span class="c1"># Standard regulariseringsparameter (højere = mindre regularisering)</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>  
 <span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
@@ -9811,6 +9810,7 @@ Test set: 31 rows
 <span class="c1"># Evaluate the model</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The Accuracy of simple logistic regression without hyperparmeter:"</span><span class="p">,</span><span class="n">accuracy</span><span class="p">)</span>
 
 <span class="c1"># Compute confusion matrix</span>
 <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
@@ -9938,6 +9938,7 @@ Dataset split sizes:
 Training set: 240 rows
 Validation set: 29 rows
 Test set: 31 rows
+The Accuracy of simple logistic regression without hyperparmeter: 0.8387096774193549
 F1 Score: 28.57%
 Accuracy: 83.87%
               precision    recall  f1-score   support
@@ -9953,6 +9954,211 @@ True Positives (TP): 1
 True Negatives (TN): 25
 False Positives (FP): 1
 False Negatives (FN): 4
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Task 2
+Meta data tilføjes</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+
+<span class="c1"># Brug TF-IDF til at transformere tekstdata til numeriske vektorer</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">X_train_tfidf</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s1">'content'</span><span class="p">])</span>
+<span class="n">X_val_tfidf</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_df</span><span class="p">[</span><span class="s1">'content'</span><span class="p">])</span>
+<span class="n">X_test_tfidf</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="s1">'content'</span><span class="p">])</span>
+
+<span class="c1"># Konverter labels til binære værdier (1 = Fake, 0 = Reliable)</span>
+<span class="n">y_train_tfidf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">label</span> <span class="o">==</span> <span class="s2">"fake"</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">train_df</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]])</span>
+<span class="n">y_val_tfidf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">label</span> <span class="o">==</span> <span class="s2">"fake"</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">val_df</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]])</span>
+<span class="n">y_test_tfidf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">label</span> <span class="o">==</span> <span class="s2">"fake"</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">test_df</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]])</span>
+
+<span class="c1"># Hyperparameter tuning for SVM</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'C'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">'linear'</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">'f1'</span><span class="p">)</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_tfidf</span><span class="p">,</span> <span class="n">y_train_tfidf</span><span class="p">)</span>
+
+<span class="c1"># Træn den bedste model</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">'linear'</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s1">'balanced'</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">best_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_tfidf</span><span class="p">,</span> <span class="n">y_train_tfidf</span><span class="p">)</span>
+
+<span class="c1"># Lav forudsigelser</span>
+<span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_tfidf</span><span class="p">)</span>
+<span class="n">y_pred_val</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val_tfidf</span><span class="p">)</span>
+<span class="n">y_pred_train</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_tfidf</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the model</span>
+<span class="n">accuracy_tfidf</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_tfidf</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">)</span>
+<span class="n">f1_tfidf</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test_tfidf</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The Accuracy of SVM with TF-IDF and hyperparameter tuning:"</span><span class="p">,</span> <span class="n">accuracy_tfidf</span><span class="p">)</span>
+
+<span class="c1"># Compute confusion matrix</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test_tfidf</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">)</span>
+
+<span class="c1"># Extract TP, TN, FP, FN</span>
+<span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="c1">#Print model performance metrics</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"F1 Score: </span><span class="si">{</span><span class="n">f1_tfidf</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Accuracy: </span><span class="si">{</span><span class="n">accuracy_tfidf</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_tfidf</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"True Positives (TP): </span><span class="si">{</span><span class="n">tp</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"True Negatives (TN): </span><span class="si">{</span><span class="n">tn</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"False Positives (FP): </span><span class="si">{</span><span class="n">fp</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"False Negatives (FN): </span><span class="si">{</span><span class="n">fn</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>The Accuracy of SVM with TF-IDF and hyperparameter tuning: 0.8387096774193549
+F1 Score: 0.00%
+Accuracy: 83.87%
+              precision    recall  f1-score   support
+
+           0       0.84      1.00      0.91        26
+           1       0.00      0.00      0.00         5
+
+    accuracy                           0.84        31
+   macro avg       0.42      0.50      0.46        31
+weighted avg       0.70      0.84      0.77        31
+
+True Positives (TP): 0
+True Negatives (TN): 26
+False Positives (FP): 0
+False Negatives (FN): 5
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Part-3">Part 3<a class="anchor-link" href="#Part-3">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># import numpy as np</span>
+<span class="c1"># from sklearn.datasets import make_classification</span>
+<span class="c1"># from sklearn import svm</span>
+<span class="c1"># from sklearn.model_selection import train_test_split</span>
+<span class="c1"># from sklearn.metrics import accuracy_score</span>
+
+<span class="c1"># # Use TF-IDF Vectorizer to transform text into a vocabulary of the 10,000 most frequent words</span>
+<span class="c1"># vectorizer = TfidfVectorizer(max_features=10000)</span>
+
+<span class="c1"># # Convert text content into numerical feature matrices</span>
+<span class="c1"># X_train_tfidf = vectorizer.fit_transform(train_df['content'])</span>
+<span class="c1"># X_test_tfidf = vectorizer.transform(test_df['content'])</span>
+
+<span class="c1"># # Convert labels to binary values (1 = Fake, 0 = Reliable)</span>
+<span class="c1"># y_train_tfidf = np.array([1 if label == "fake" else 0 for label in train_df['type']])</span>
+<span class="c1"># y_test_tfidf = np.array([1 if label == "fake" else 0 for label in test_df['type']])</span>
+
+<span class="c1"># model = svm.SVC(kernel = 'linear', random_state = 0, C=1.0)</span>
+<span class="c1"># model.fit(X_train_tfidf, y_train)</span>
+
+<span class="c1"># y=model.predict(X_test_tfidf)</span>
+<span class="c1"># y2=model.predict(X_train_tfidf)</span>
+
+<span class="c1"># score =accuracy_score(y, y_test_tfidf)</span>
+<span class="c1"># print(score)</span>
+<span class="c1"># score2 =accuracy_score(y2, y_train_tfidf )</span>
+<span class="c1"># print(score2)</span>
+<span class="c1">#%%</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># color = ['black' if c == 0 else 'lightgrey' for c in y]</span>
+<span class="c1"># plt.scatter(X_train[:,0], X_train[:,1], c=color)</span>
+
+<span class="c1"># # Create the hyperplane</span>
+<span class="c1"># w = model.coef_[0]</span>
+<span class="c1"># a = -w[0] / w[1]</span>
+<span class="c1"># xx = np.linspace(-2.5, 2.5)</span>
+<span class="c1"># yy = a * xx - (model.intercept_[0]) / w[1]</span>
+
+<span class="c1"># # Plot the hyperplane</span>
+<span class="c1"># plt.plot(xx, yy)</span>
+<span class="c1"># plt.axis("off"), plt.show();</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>0.8387096774193549
+0.9541666666666667
 </pre>
 </div>
 </div>
